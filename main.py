@@ -9,6 +9,7 @@ SCREEN_SIZE = f"{WIDTH}x{HEIGHT}"
 APP_TITLE = "Local Password Reminder"
 ADD_TITLE = "Add"
 ADD_PWD_NAME_LABEL = "Name"
+ADD_PWD_LOGIN_LABEL = "Login"
 ADD_PWD_MAIL_LABEL = "Mail address"
 ADD_PWD_LABEL = "Password"
 LIST_TITLE = "List"
@@ -59,16 +60,20 @@ class App(customtkinter.CTk):
       self.label_name.grid(row=0, column=0, pady=20)
       self.textbox_name = customtkinter.CTkEntry(self.tabview.tab(ADD_TITLE), width=WIDTH/3, height=1)
       self.textbox_name.grid(row=0, column=1)
+      self.label_login = customtkinter.CTkLabel(self.tabview.tab(ADD_TITLE), text=ADD_PWD_LOGIN_LABEL, font=customtkinter.CTkFont(size=15))
+      self.label_login.grid(row=1, column=0, pady=20)
+      self.textbox_login = customtkinter.CTkEntry(self.tabview.tab(ADD_TITLE), width=WIDTH/3, height=1)
+      self.textbox_login.grid(row=1, column=1)
       self.label_email = customtkinter.CTkLabel(self.tabview.tab(ADD_TITLE), text=ADD_PWD_MAIL_LABEL, font=customtkinter.CTkFont(size=15))
-      self.label_email.grid(row=1, column=0, pady=20)
+      self.label_email.grid(row=2, column=0, pady=20)
       self.textbox_email = customtkinter.CTkEntry(self.tabview.tab(ADD_TITLE), width=WIDTH/3, height=1)
-      self.textbox_email.grid(row=1, column=1)
+      self.textbox_email.grid(row=2, column=1)
       self.label_password = customtkinter.CTkLabel(self.tabview.tab(ADD_TITLE), text=ADD_PWD_LABEL, font=customtkinter.CTkFont(size=15))
-      self.label_password.grid(row=2, column=0, pady=20)
+      self.label_password.grid(row=3, column=0, pady=20)
       self.textbox_pwd = customtkinter.CTkEntry(self.tabview.tab(ADD_TITLE), width=WIDTH/3, height=1, show="*")
-      self.textbox_pwd.grid(row=2, column=1)
+      self.textbox_pwd.grid(row=3, column=1)
       self.button_add_pwd = customtkinter.CTkButton(self.tabview.tab(ADD_TITLE), text=ADD_TITLE + " " + ADD_PWD_LABEL, command=self.button_event_add_password)
-      self.button_add_pwd.grid(row=3, column=0, pady=20)
+      self.button_add_pwd.grid(row=4, column=0, pady=20)
 
       # set default values
       self.appearance_mode_optionemenu.set("System")
@@ -77,7 +82,10 @@ class App(customtkinter.CTk):
       customtkinter.set_appearance_mode(new_appearance_mode)
 
    def button_event_add_password(self):
-      print("Event button add password")
+      name = self.textbox_name.get()
+      login = self.textbox_login.get()
+      mail = self.textbox_email.get()
+      pwd = self.textbox_pwd.get()
 
 if __name__ == "__main__":
     app = App()
